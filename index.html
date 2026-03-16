@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autophagie & Fasten – Dein Körper kann sich selbst heilen</title>
+  <style>
+    :root {
+      --green: #2d6a4f;
+      --green-light: #52b788;
+      --bg: #fafaf5;
+      --text: #1b1b1b;
+      --text-muted: #555;
+      --card-bg: #fff;
+      --accent: #d4a373;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ---- NAV ---- */
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      background: var(--green);
+      color: #fff;
+      display: flex; justify-content: center; gap: 2rem;
+      padding: .9rem 1rem;
+      font-size: .95rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,.15);
+    }
+    nav a { color: #fff; text-decoration: none; opacity: .85; transition: opacity .2s; }
+    nav a:hover { opacity: 1; }
+
+    /* ---- HERO ---- */
+    .hero {
+      background: linear-gradient(135deg, var(--green) 0%, #1b4332 100%);
+      color: #fff;
+      text-align: center;
+      padding: 5rem 1.5rem 4rem;
+    }
+    .hero h1 { font-size: 2.6rem; font-weight: 700; margin-bottom: .6rem; }
+    .hero p { font-size: 1.15rem; max-width: 600px; margin: 0 auto; opacity: .9; }
+
+    /* ---- SECTIONS ---- */
+    section { max-width: 900px; margin: 0 auto; padding: 3.5rem 1.5rem; }
+    section h2 {
+      font-size: 1.8rem; color: var(--green); margin-bottom: 1.2rem;
+      border-left: 4px solid var(--green-light); padding-left: .8rem;
+    }
+    section p { margin-bottom: 1rem; color: var(--text); }
+
+    /* ---- CARDS ---- */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 1.8rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+      border-top: 4px solid var(--green-light);
+    }
+    .card h3 { color: var(--green); margin-bottom: .5rem; font-size: 1.15rem; }
+    .card p { font-size: .95rem; color: var(--text-muted); }
+
+    /* ---- TIMELINE ---- */
+    .timeline { margin-top: 1.5rem; position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: ""; position: absolute; left: .45rem; top: 0; bottom: 0;
+      width: 3px; background: var(--green-light); border-radius: 2px;
+    }
+    .timeline-item { position: relative; margin-bottom: 1.8rem; }
+    .timeline-item::before {
+      content: ""; position: absolute; left: -1.75rem; top: .35rem;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--green); border: 3px solid var(--green-light);
+    }
+    .timeline-item strong { display: block; color: var(--green); font-size: 1.05rem; }
+    .timeline-item span { font-size: .95rem; color: var(--text-muted); }
+
+    /* ---- QUOTE ---- */
+    blockquote {
+      background: linear-gradient(135deg, #f0fdf4, #e8f5e9);
+      border-left: 4px solid var(--green-light);
+      padding: 1.5rem 2rem;
+      border-radius: 0 12px 12px 0;
+      margin: 2rem 0;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    /* ---- HINWEIS ---- */
+    .hinweis {
+      background: #fff3e0;
+      border: 1px solid var(--accent);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+    .hinweis strong { color: #bf360c; }
+
+    /* ---- FOOTER ---- */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: var(--green);
+      color: rgba(255,255,255,.7);
+      font-size: .85rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.8rem; }
+      section h2 { font-size: 1.4rem; }
+      nav { gap: 1rem; font-size: .85rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#autophagie">Autophagie</a>
+  <a href="#fasten">Fasten</a>
+  <a href="#verbindung">Zusammenspiel</a>
+  <a href="#timeline">Zeitstrahl</a>
+  <a href="#tipps">Tipps</a>
+</nav>
+
+<header class="hero">
+  <h1>Autophagie &amp; Fasten</h1>
+  <p>Wie dein Körper sich durch zelluläre Selbstreinigung regeneriert – und wie Fasten diesen Prozess aktiviert.</p>
+</header>
+
+<!-- AUTOPHAGIE -->
+<section id="autophagie">
+  <h2>Was ist Autophagie?</h2>
+  <p>
+    Das Wort <strong>Autophagie</strong> stammt aus dem Griechischen und bedeutet wörtlich
+    <em>„sich selbst essen"</em> (auto = selbst, phagein = essen). Es beschreibt einen
+    natürlichen Prozess, bei dem Zellen beschädigte oder nicht mehr benötigte Bestandteile
+    abbauen und recyceln.
+  </p>
+  <p>
+    Dieser Mechanismus dient als eine Art <strong>zelluläres Aufräumprogramm</strong>: Defekte
+    Proteine, geschädigte Mitochondrien und andere Zellabfälle werden in Membranbläschen
+    (Autophagosomen) eingeschlossen und anschließend von Lysosomen abgebaut. Die gewonnenen
+    Bausteine nutzt die Zelle zur Energiegewinnung oder zum Aufbau neuer Strukturen.
+  </p>
+
+  <blockquote>
+    „Autophagie ist das Recyclingprogramm unserer Zellen – ein Schlüssel zu Langlebigkeit und Gesundheit."
+    <br>– frei nach Yoshinori Ohsumi, Nobelpreisträger 2016
+  </blockquote>
+
+  <div class="cards">
+    <div class="card">
+      <h3>🔬 Zellerneuerung</h3>
+      <p>Beschädigte Zellbestandteile werden abgebaut und durch neue ersetzt – die Zelle verjüngt sich von innen.</p>
+    </div>
+    <div class="card">
+      <h3>🛡️ Immunabwehr</h3>
+      <p>Autophagie hilft, intrazelluläre Krankheitserreger wie Bakterien und Viren zu beseitigen.</p>
+    </div>
+    <div class="card">
+      <h3>⚡ Energiegewinnung</h3>
+      <p>In Zeiten von Nährstoffmangel liefert der Abbau zelleigener Bestandteile wertvolle Energie.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FASTEN -->
+<section id="fasten">
+  <h2>Fasten – Methoden im Überblick</h2>
+  <p>
+    Fasten ist der bewusste, zeitlich begrenzte Verzicht auf Nahrung. Es ist eine der ältesten
+    Gesundheitspraktiken der Menschheit und wird heute wissenschaftlich intensiv erforscht.
+  </p>
+
+  <div class="cards">
+    <div class="card">
+      <h3>16:8 Intervallfasten</h3>
+      <p>16 Stunden fasten, 8 Stunden essen. Die beliebteste Methode für den Alltag – z.B. von 12–20 Uhr essen.</p>
+    </div>
+    <div class="card">
+      <h3>5:2 Methode</h3>
+      <p>An 5 Tagen normal essen, an 2 Tagen nur ca. 500–600 kcal. Flexibel in der Wochenplanung.</p>
+    </div>
+    <div class="card">
+      <h3>OMAD (One Meal a Day)</h3>
+      <p>Nur eine Mahlzeit am Tag – ein intensiverer Ansatz mit ca. 23 Stunden Fastenzeit.</p>
+    </div>
+    <div class="card">
+      <h3>Mehrtägiges Fasten</h3>
+      <p>24–72+ Stunden ohne Nahrung. Stärkster Autophagie-Stimulus, nur mit Vorbereitung und ggf. ärztlicher Begleitung.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VERBINDUNG -->
+<section id="verbindung">
+  <h2>Wie Fasten die Autophagie aktiviert</h2>
+  <p>
+    Wenn dem Körper über einen längeren Zeitraum keine Nahrung zugeführt wird, sinkt der
+    <strong>Insulinspiegel</strong> und ein Enzym namens <strong>AMPK</strong> wird aktiviert.
+    Gleichzeitig wird der Wachstumsfaktor <strong>mTOR</strong> gehemmt – ein zentraler
+    Signalweg, der bei Nahrungsüberfluss die Autophagie unterdrückt.
+  </p>
+  <p>
+    Das Ergebnis: Die Zellen schalten in den „Aufräummodus". Je länger die Fastenperiode,
+    desto intensiver läuft die Autophagie ab. Erste Effekte zeigen sich bereits nach
+    <strong>12–16 Stunden</strong>, ein deutlicher Anstieg wird nach <strong>24–48 Stunden</strong>
+    beobachtet.
+  </p>
+
+  <div class="cards">
+    <div class="card">
+      <h3>📉 Insulin sinkt</h3>
+      <p>Niedrige Insulinwerte signalisieren den Zellen: „Es gibt gerade keine neue Energie von außen."</p>
+    </div>
+    <div class="card">
+      <h3>🔄 mTOR wird gehemmt</h3>
+      <p>Der Wachstumssensor mTOR fährt herunter – das gibt den Startschuss für die zelluläre Selbstreinigung.</p>
+    </div>
+    <div class="card">
+      <h3>⚙️ AMPK wird aktiviert</h3>
+      <p>Der „Energiesensor" AMPK erkennt den Mangel und kurbelt Reparatur- und Recyclingprozesse an.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <h2>Was passiert beim Fasten? – Zeitstrahl</h2>
+  <p>Ein Überblick, was in deinem Körper passiert, wenn du aufhörst zu essen:</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <strong>0–4 Stunden</strong>
+      <span>Verdauungsphase – der Körper verarbeitet die letzte Mahlzeit. Blutzucker und Insulin steigen.</span>
+    </div>
+    <div class="timeline-item">
+      <strong>4–8 Stunden</strong>
+      <span>Blutzucker normalisiert sich. Der Körper beginnt, Glykogenreserven in der Leber anzuzapfen.</span>
+    </div>
+    <div class="timeline-item">
+      <strong>8–12 Stunden</strong>
+      <span>Glykogenspeicher leeren sich. Fettverbrennung setzt ein. Erste Autophagie-Signale.</span>
+    </div>
+    <div class="timeline-item">
+      <strong>12–18 Stunden</strong>
+      <span>Ketose beginnt – Fette werden in Ketonkörper umgewandelt. Autophagie nimmt messbar zu.</span>
+    </div>
+    <div class="timeline-item">
+      <strong>18–24 Stunden</strong>
+      <span>Starke Autophagie-Aktivität. Der Körper räumt intensiv auf. Wachstumshormon steigt.</span>
+    </div>
+    <div class="timeline-item">
+      <strong>24–48 Stunden</strong>
+      <span>Autophagie auf hohem Niveau. Tiefgreifende zelluläre Reparaturprozesse. Entzündungswerte sinken.</span>
+    </div>
+    <div class="timeline-item">
+      <strong>48–72 Stunden</strong>
+      <span>Maximale Autophagie. Stammzell-Regeneration beginnt. Immunsystem wird quasi „neu gestartet".</span>
+    </div>
+  </div>
+</section>
+
+<!-- TIPPS -->
+<section id="tipps">
+  <h2>Praktische Tipps für Einsteiger</h2>
+
+  <div class="cards">
+    <div class="card">
+      <h3>🚶 Langsam starten</h3>
+      <p>Beginne mit 12:12 und steigere dich schrittweise auf 16:8. Dein Körper braucht Zeit zur Anpassung.</p>
+    </div>
+    <div class="card">
+      <h3>💧 Viel trinken</h3>
+      <p>Wasser, ungesüßter Tee und schwarzer Kaffee sind erlaubt und helfen, das Hungergefühl zu mildern.</p>
+    </div>
+    <div class="card">
+      <h3>🥗 Nährstoffreich essen</h3>
+      <p>In den Essensphasen auf vollwertige, nährstoffreiche Mahlzeiten achten – Qualität vor Quantität.</p>
+    </div>
+    <div class="card">
+      <h3>📋 Auf den Körper hören</h3>
+      <p>Schwindel, starke Schwäche oder Unwohlsein? Dann brich das Fasten ab. Gesundheit geht vor.</p>
+    </div>
+  </div>
+
+  <div class="hinweis">
+    <strong>⚠️ Wichtiger Hinweis:</strong> Diese Seite dient ausschließlich der Information und
+    ersetzt keine ärztliche Beratung. Personen mit Vorerkrankungen, Schwangere, Stillende und
+    Kinder sollten nicht ohne ärztliche Rücksprache fasten.
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 – Informationsseite zu Autophagie &amp; Fasten</p>
+</footer>
+
+</body>
+</html>
