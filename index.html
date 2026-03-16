@@ -4,192 +4,316 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Autophagie & Fasten – Dein Körper kann sich selbst heilen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --green: #2d6a4f;
-      --green-light: #52b788;
-      --bg: #fafaf5;
-      --text: #1b1b1b;
-      --text-muted: #555;
-      --card-bg: #fff;
-      --accent: #d4a373;
+      --green: #059669;
+      --green-dark: #064e3b;
+      --green-light: #34d399;
+      --emerald-50: #ecfdf5;
+      --bg: #fafafa;
+      --text: #111827;
+      --text-muted: #6b7280;
+      --card-bg: #ffffff;
+      --radius: 16px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.06);
+      --shadow-md: 0 4px 20px rgba(0,0,0,.08);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,.12);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.7;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
     }
 
     /* ---- NAV ---- */
     nav {
-      position: sticky; top: 0; z-index: 10;
-      background: var(--green);
-      color: #fff;
-      display: flex; justify-content: center; gap: 2rem;
-      padding: .9rem 1rem;
-      font-size: .95rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,.15);
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,.06);
+      display: flex; justify-content: center; align-items: center; gap: 2.5rem;
+      padding: 1rem 1.5rem;
+      font-size: .875rem;
+      font-weight: 500;
     }
-    nav a { color: #fff; text-decoration: none; opacity: .85; transition: opacity .2s; }
-    nav a:hover { opacity: 1; }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color .2s;
+      letter-spacing: -.01em;
+    }
+    nav a:hover { color: var(--green); }
 
     /* ---- HERO ---- */
     .hero {
-      background: linear-gradient(135deg, var(--green) 0%, #1b4332 100%);
-      color: #fff;
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      padding: 5rem 1.5rem 4rem;
+      padding: 6rem 1.5rem;
+      overflow: hidden;
+      background: linear-gradient(160deg, #064e3b 0%, #059669 40%, #34d399 100%);
     }
-    .hero h1 { font-size: 2.6rem; font-weight: 700; margin-bottom: .6rem; }
-    .hero p { font-size: 1.15rem; max-width: 600px; margin: 0 auto; opacity: .9; }
+    .hero::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1400&q=80') center/cover;
+      opacity: .15;
+      mix-blend-mode: overlay;
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 720px; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,.2);
+      padding: .4rem 1.2rem;
+      border-radius: 100px;
+      font-size: .8rem;
+      font-weight: 500;
+      color: #d1fae5;
+      margin-bottom: 1.5rem;
+      letter-spacing: .03em;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,.85);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: .5rem;
+      margin-top: 2rem;
+      padding: .85rem 2rem;
+      background: #fff;
+      color: var(--green-dark);
+      font-weight: 600;
+      font-size: .95rem;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: var(--shadow-md);
+    }
+    .hero-cta:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    .hero-cta svg { width: 18px; height: 18px; }
 
     /* ---- SECTIONS ---- */
-    section { max-width: 900px; margin: 0 auto; padding: 3.5rem 1.5rem; }
-    section h2 {
-      font-size: 1.8rem; color: var(--green); margin-bottom: 1.2rem;
-      border-left: 4px solid var(--green-light); padding-left: .8rem;
+    .container { max-width: 960px; margin: 0 auto; padding: 5rem 1.5rem; }
+    .section-label {
+      display: inline-block;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: .5rem;
     }
-    section p { margin-bottom: 1rem; color: var(--text); }
-
-    /* ---- CARDS ---- */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
+    .container h2 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -.02em;
+      margin-bottom: 1rem;
     }
-    .card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 1.8rem;
-      box-shadow: 0 2px 12px rgba(0,0,0,.06);
-      border-top: 4px solid var(--green-light);
-    }
-    .card h3 { color: var(--green); margin-bottom: .5rem; font-size: 1.15rem; }
-    .card p { font-size: .95rem; color: var(--text-muted); }
-
-    /* ---- TIMELINE ---- */
-    .timeline { margin-top: 1.5rem; position: relative; padding-left: 2rem; }
-    .timeline::before {
-      content: ""; position: absolute; left: .45rem; top: 0; bottom: 0;
-      width: 3px; background: var(--green-light); border-radius: 2px;
-    }
-    .timeline-item { position: relative; margin-bottom: 1.8rem; }
-    .timeline-item::before {
-      content: ""; position: absolute; left: -1.75rem; top: .35rem;
-      width: 12px; height: 12px; border-radius: 50%;
-      background: var(--green); border: 3px solid var(--green-light);
-    }
-    .timeline-item strong { display: block; color: var(--green); font-size: 1.05rem; }
-    .timeline-item span { font-size: .95rem; color: var(--text-muted); }
-
-    /* ---- QUOTE ---- */
-    blockquote {
-      background: linear-gradient(135deg, #f0fdf4, #e8f5e9);
-      border-left: 4px solid var(--green-light);
-      padding: 1.5rem 2rem;
-      border-radius: 0 12px 12px 0;
-      margin: 2rem 0;
-      font-style: italic;
-      color: var(--text-muted);
-    }
-
-    /* ---- HERO IMAGE ---- */
-    .hero-img {
-      width: 100%;
-      max-height: 400px;
-      object-fit: cover;
-      display: block;
-    }
+    .container > p { color: var(--text-muted); font-size: 1.05rem; max-width: 640px; }
 
     /* ---- SECTION IMAGES ---- */
     .section-img {
       width: 100%;
-      max-height: 320px;
+      height: 280px;
       object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 4px 16px rgba(0,0,0,.1);
+      border-radius: var(--radius);
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-md);
     }
 
-    /* ---- VIDEOS ---- */
-    .video-cards {
+    /* ---- CARDS ---- */
+    .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0,0,0,.04);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .card-icon {
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--emerald-50);
+      border-radius: 12px;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+    .card h3 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: .4rem; }
+    .card p { font-size: .9rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* ---- QUOTE ---- */
+    .quote-block {
+      position: relative;
+      background: var(--emerald-50);
+      border-radius: var(--radius);
+      padding: 2.5rem 2.5rem 2.5rem 3rem;
+      margin: 2.5rem 0;
+    }
+    .quote-block::before {
+      content: "\201C";
+      position: absolute;
+      top: .5rem; left: 1rem;
+      font-size: 4rem;
+      color: var(--green-light);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+    .quote-block p { font-size: 1.05rem; color: var(--text); font-style: italic; }
+    .quote-block cite { display: block; margin-top: .8rem; font-size: .85rem; color: var(--text-muted); font-style: normal; font-weight: 500; }
+
+    /* ---- TIMELINE ---- */
+    .timeline { margin-top: 2rem; }
+    .tl-item {
+      display: grid;
+      grid-template-columns: 100px 1fr;
       gap: 1.5rem;
-      margin-top: 1.5rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(0,0,0,.06);
+      align-items: start;
+    }
+    .tl-item:last-child { border-bottom: none; }
+    .tl-time {
+      font-weight: 700;
+      font-size: .95rem;
+      color: var(--green);
+      padding-top: .1rem;
+      white-space: nowrap;
+    }
+    .tl-text { font-size: .95rem; color: var(--text-muted); }
+
+    /* ---- HINWEIS ---- */
+    .hinweis {
+      background: #fffbeb;
+      border: 1px solid #fbbf24;
+      border-radius: var(--radius);
+      padding: 1.5rem 1.8rem;
+      margin-top: 2.5rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .hinweis-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: .1rem; }
+    .hinweis p { font-size: .9rem; color: #92400e; }
+
+    /* ---- VIDEOS ---- */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
     }
     .video-card {
       background: var(--card-bg);
-      border-radius: 12px;
+      border-radius: var(--radius);
       overflow: hidden;
-      box-shadow: 0 2px 12px rgba(0,0,0,.06);
-      transition: transform .2s, box-shadow .2s;
-      text-decoration: none;
-      color: inherit;
-      display: block;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0,0,0,.04);
+      transition: transform .25s ease, box-shadow .25s ease;
+      text-decoration: none; color: inherit; display: block;
     }
-    .video-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0,0,0,.12);
-    }
-    .video-card img {
+    .video-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .video-thumb {
+      position: relative;
       width: 100%;
       height: 180px;
-      object-fit: cover;
+      overflow: hidden;
     }
-    .video-card .video-info {
-      padding: 1.2rem;
+    .video-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+    .video-card:hover .video-thumb img { transform: scale(1.05); }
+    .video-play {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,.25);
+      opacity: 0;
+      transition: opacity .3s;
     }
-    .video-card .video-info h3 {
-      color: var(--green);
-      font-size: 1.05rem;
-      margin-bottom: .4rem;
-    }
-    .video-card .video-info p {
-      font-size: .9rem;
-      color: var(--text-muted);
-      margin: 0;
-    }
-    .video-card .badge {
+    .video-card:hover .video-play { opacity: 1; }
+    .video-play svg { width: 48px; height: 48px; fill: #fff; filter: drop-shadow(0 2px 8px rgba(0,0,0,.3)); }
+    .video-body { padding: 1.3rem 1.5rem; }
+    .video-body h3 { font-size: 1rem; font-weight: 600; margin-bottom: .3rem; }
+    .video-body p { font-size: .85rem; color: var(--text-muted); margin: 0; line-height: 1.5; }
+    .badge {
       display: inline-block;
-      font-size: .75rem;
-      padding: .2rem .6rem;
-      border-radius: 20px;
-      margin-top: .5rem;
-      font-weight: 600;
+      font-size: .7rem; font-weight: 600;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: .25rem .7rem;
+      border-radius: 100px;
+      margin-top: .7rem;
     }
     .badge-arte { background: #ff6600; color: #fff; }
     .badge-youtube { background: #ff0000; color: #fff; }
 
-    /* ---- HINWEIS ---- */
-    .hinweis {
-      background: #fff3e0;
-      border: 1px solid var(--accent);
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-top: 2rem;
+    /* ---- DIVIDER ---- */
+    .divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,0,0,.08), transparent);
+      max-width: 960px;
+      margin: 0 auto;
     }
-    .hinweis strong { color: #bf360c; }
 
     /* ---- FOOTER ---- */
     footer {
       text-align: center;
-      padding: 2rem 1rem;
-      background: var(--green);
-      color: rgba(255,255,255,.7);
+      padding: 3rem 1.5rem;
       font-size: .85rem;
-      margin-top: 2rem;
+      color: var(--text-muted);
     }
 
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 1.8rem; }
-      section h2 { font-size: 1.4rem; }
-      nav { gap: 1rem; font-size: .85rem; }
+    /* ---- ANIMATIONS ---- */
+    @media (prefers-reduced-motion: no-preference) {
+      .fade-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity .6s ease, transform .6s ease;
+      }
+      .fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ---- MOBILE ---- */
+    @media (max-width: 640px) {
+      nav { gap: 1rem; font-size: .8rem; flex-wrap: wrap; justify-content: center; }
+      .hero { min-height: 70vh; padding: 4rem 1.2rem; }
+      .container { padding: 3.5rem 1.2rem; }
+      .tl-item { grid-template-columns: 80px 1fr; gap: 1rem; }
+      .section-img { height: 200px; }
     }
   </style>
 </head>
@@ -204,16 +328,23 @@
   <a href="#videos">Videos</a>
 </nav>
 
+<!-- HERO -->
 <header class="hero">
-  <h1>Autophagie &amp; Fasten</h1>
-  <p>Wie dein Körper sich durch zelluläre Selbstreinigung regeneriert – und wie Fasten diesen Prozess aktiviert.</p>
+  <div class="hero-content">
+    <div class="hero-badge">Wissenschaftlich fundiert</div>
+    <h1>Autophagie<br>&amp; Fasten</h1>
+    <p>Wie dein Körper sich durch zelluläre Selbstreinigung regeneriert – und wie Fasten diesen Prozess aktiviert.</p>
+    <a href="#autophagie" class="hero-cta">
+      Mehr erfahren
+      <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+    </a>
+  </div>
 </header>
 
-<img class="hero-img" src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&q=80" alt="Frisches gesundes Essen auf einem Tisch">
-
 <!-- AUTOPHAGIE -->
-<section id="autophagie">
+<div class="container fade-up" id="autophagie">
   <img class="section-img" src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=900&q=80" alt="Mikroskopische Zellaufnahme">
+  <span class="section-label">Grundlagen</span>
   <h2>Was ist Autophagie?</h2>
   <p>
     Das Wort <strong>Autophagie</strong> stammt aus dem Griechischen und bedeutet wörtlich
@@ -221,38 +352,44 @@
     natürlichen Prozess, bei dem Zellen beschädigte oder nicht mehr benötigte Bestandteile
     abbauen und recyceln.
   </p>
-  <p>
+  <p style="margin-top: 1rem; color: var(--text-muted); max-width: 640px;">
     Dieser Mechanismus dient als eine Art <strong>zelluläres Aufräumprogramm</strong>: Defekte
     Proteine, geschädigte Mitochondrien und andere Zellabfälle werden in Membranbläschen
-    (Autophagosomen) eingeschlossen und anschließend von Lysosomen abgebaut. Die gewonnenen
+    (Autophagosomen) eingeschlossen und von Lysosomen abgebaut. Die gewonnenen
     Bausteine nutzt die Zelle zur Energiegewinnung oder zum Aufbau neuer Strukturen.
   </p>
 
-  <blockquote>
-    „Autophagie ist das Recyclingprogramm unserer Zellen – ein Schlüssel zu Langlebigkeit und Gesundheit."
-    <br>– frei nach Yoshinori Ohsumi, Nobelpreisträger 2016
-  </blockquote>
+  <div class="quote-block">
+    <p>Autophagie ist das Recyclingprogramm unserer Zellen – ein Schlüssel zu Langlebigkeit und Gesundheit.</p>
+    <cite>– frei nach Yoshinori Ohsumi, Nobelpreisträger 2016</cite>
+  </div>
 
   <div class="cards">
     <div class="card">
-      <h3>🔬 Zellerneuerung</h3>
+      <div class="card-icon">🔬</div>
+      <h3>Zellerneuerung</h3>
       <p>Beschädigte Zellbestandteile werden abgebaut und durch neue ersetzt – die Zelle verjüngt sich von innen.</p>
     </div>
     <div class="card">
-      <h3>🛡️ Immunabwehr</h3>
+      <div class="card-icon">🛡️</div>
+      <h3>Immunabwehr</h3>
       <p>Autophagie hilft, intrazelluläre Krankheitserreger wie Bakterien und Viren zu beseitigen.</p>
     </div>
     <div class="card">
-      <h3>⚡ Energiegewinnung</h3>
+      <div class="card-icon">⚡</div>
+      <h3>Energiegewinnung</h3>
       <p>In Zeiten von Nährstoffmangel liefert der Abbau zelleigener Bestandteile wertvolle Energie.</p>
     </div>
   </div>
-</section>
+</div>
+
+<hr class="divider">
 
 <!-- FASTEN -->
-<section id="fasten">
+<div class="container fade-up" id="fasten">
   <img class="section-img" src="https://images.unsplash.com/photo-1544991875-5dc1b05f607d?w=900&q=80" alt="Leerer Teller mit Besteck – Fastenkonzept">
-  <h2>Fasten – Methoden im Überblick</h2>
+  <span class="section-label">Methoden</span>
+  <h2>Fasten im Überblick</h2>
   <p>
     Fasten ist der bewusste, zeitlich begrenzte Verzicht auf Nahrung. Es ist eine der ältesten
     Gesundheitspraktiken der Menschheit und wird heute wissenschaftlich intensiv erforscht.
@@ -260,27 +397,34 @@
 
   <div class="cards">
     <div class="card">
+      <div class="card-icon">⏰</div>
       <h3>16:8 Intervallfasten</h3>
       <p>16 Stunden fasten, 8 Stunden essen. Die beliebteste Methode für den Alltag – z.B. von 12–20 Uhr essen.</p>
     </div>
     <div class="card">
+      <div class="card-icon">📅</div>
       <h3>5:2 Methode</h3>
       <p>An 5 Tagen normal essen, an 2 Tagen nur ca. 500–600 kcal. Flexibel in der Wochenplanung.</p>
     </div>
     <div class="card">
-      <h3>OMAD (One Meal a Day)</h3>
-      <p>Nur eine Mahlzeit am Tag – ein intensiverer Ansatz mit ca. 23 Stunden Fastenzeit.</p>
+      <div class="card-icon">🍽️</div>
+      <h3>OMAD</h3>
+      <p>One Meal a Day – nur eine Mahlzeit am Tag, ein intensiverer Ansatz mit ca. 23h Fastenzeit.</p>
     </div>
     <div class="card">
+      <div class="card-icon">🧘</div>
       <h3>Mehrtägiges Fasten</h3>
-      <p>24–72+ Stunden ohne Nahrung. Stärkster Autophagie-Stimulus, nur mit Vorbereitung und ggf. ärztlicher Begleitung.</p>
+      <p>24–72+ Stunden ohne Nahrung. Stärkster Autophagie-Stimulus, nur mit Vorbereitung und ärztlicher Begleitung.</p>
     </div>
   </div>
-</section>
+</div>
+
+<hr class="divider">
 
 <!-- VERBINDUNG -->
-<section id="verbindung">
+<div class="container fade-up" id="verbindung">
   <img class="section-img" src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=900&q=80" alt="Wissenschaftliche Forschung im Labor">
+  <span class="section-label">Wissenschaft</span>
   <h2>Wie Fasten die Autophagie aktiviert</h2>
   <p>
     Wenn dem Körper über einen längeren Zeitraum keine Nahrung zugeführt wird, sinkt der
@@ -288,7 +432,7 @@
     Gleichzeitig wird der Wachstumsfaktor <strong>mTOR</strong> gehemmt – ein zentraler
     Signalweg, der bei Nahrungsüberfluss die Autophagie unterdrückt.
   </p>
-  <p>
+  <p style="margin-top: 1rem; color: var(--text-muted); max-width: 640px;">
     Das Ergebnis: Die Zellen schalten in den „Aufräummodus". Je länger die Fastenperiode,
     desto intensiver läuft die Autophagie ab. Erste Effekte zeigen sich bereits nach
     <strong>12–16 Stunden</strong>, ein deutlicher Anstieg wird nach <strong>24–48 Stunden</strong>
@@ -297,106 +441,131 @@
 
   <div class="cards">
     <div class="card">
-      <h3>📉 Insulin sinkt</h3>
+      <div class="card-icon">📉</div>
+      <h3>Insulin sinkt</h3>
       <p>Niedrige Insulinwerte signalisieren den Zellen: „Es gibt gerade keine neue Energie von außen."</p>
     </div>
     <div class="card">
-      <h3>🔄 mTOR wird gehemmt</h3>
+      <div class="card-icon">🔄</div>
+      <h3>mTOR wird gehemmt</h3>
       <p>Der Wachstumssensor mTOR fährt herunter – das gibt den Startschuss für die zelluläre Selbstreinigung.</p>
     </div>
     <div class="card">
-      <h3>⚙️ AMPK wird aktiviert</h3>
+      <div class="card-icon">⚙️</div>
+      <h3>AMPK wird aktiviert</h3>
       <p>Der „Energiesensor" AMPK erkennt den Mangel und kurbelt Reparatur- und Recyclingprozesse an.</p>
     </div>
   </div>
-</section>
+</div>
+
+<hr class="divider">
 
 <!-- TIMELINE -->
-<section id="timeline">
-  <h2>Was passiert beim Fasten? – Zeitstrahl</h2>
-  <p>Ein Überblick, was in deinem Körper passiert, wenn du aufhörst zu essen:</p>
+<div class="container fade-up" id="timeline">
+  <span class="section-label">Zeitverlauf</span>
+  <h2>Was passiert beim Fasten?</h2>
+  <p>Ein Überblick, was in deinem Körper passiert, wenn du aufhörst zu essen.</p>
 
   <div class="timeline">
-    <div class="timeline-item">
-      <strong>0–4 Stunden</strong>
-      <span>Verdauungsphase – der Körper verarbeitet die letzte Mahlzeit. Blutzucker und Insulin steigen.</span>
+    <div class="tl-item">
+      <div class="tl-time">0–4 h</div>
+      <div class="tl-text">Verdauungsphase – der Körper verarbeitet die letzte Mahlzeit. Blutzucker und Insulin steigen.</div>
     </div>
-    <div class="timeline-item">
-      <strong>4–8 Stunden</strong>
-      <span>Blutzucker normalisiert sich. Der Körper beginnt, Glykogenreserven in der Leber anzuzapfen.</span>
+    <div class="tl-item">
+      <div class="tl-time">4–8 h</div>
+      <div class="tl-text">Blutzucker normalisiert sich. Der Körper beginnt, Glykogenreserven in der Leber anzuzapfen.</div>
     </div>
-    <div class="timeline-item">
-      <strong>8–12 Stunden</strong>
-      <span>Glykogenspeicher leeren sich. Fettverbrennung setzt ein. Erste Autophagie-Signale.</span>
+    <div class="tl-item">
+      <div class="tl-time">8–12 h</div>
+      <div class="tl-text">Glykogenspeicher leeren sich. Fettverbrennung setzt ein. Erste Autophagie-Signale.</div>
     </div>
-    <div class="timeline-item">
-      <strong>12–18 Stunden</strong>
-      <span>Ketose beginnt – Fette werden in Ketonkörper umgewandelt. Autophagie nimmt messbar zu.</span>
+    <div class="tl-item">
+      <div class="tl-time">12–18 h</div>
+      <div class="tl-text">Ketose beginnt – Fette werden in Ketonkörper umgewandelt. Autophagie nimmt messbar zu.</div>
     </div>
-    <div class="timeline-item">
-      <strong>18–24 Stunden</strong>
-      <span>Starke Autophagie-Aktivität. Der Körper räumt intensiv auf. Wachstumshormon steigt.</span>
+    <div class="tl-item">
+      <div class="tl-time">18–24 h</div>
+      <div class="tl-text">Starke Autophagie-Aktivität. Der Körper räumt intensiv auf. Wachstumshormon steigt.</div>
     </div>
-    <div class="timeline-item">
-      <strong>24–48 Stunden</strong>
-      <span>Autophagie auf hohem Niveau. Tiefgreifende zelluläre Reparaturprozesse. Entzündungswerte sinken.</span>
+    <div class="tl-item">
+      <div class="tl-time">24–48 h</div>
+      <div class="tl-text">Autophagie auf hohem Niveau. Tiefgreifende zelluläre Reparaturprozesse. Entzündungswerte sinken.</div>
     </div>
-    <div class="timeline-item">
-      <strong>48–72 Stunden</strong>
-      <span>Maximale Autophagie. Stammzell-Regeneration beginnt. Immunsystem wird quasi „neu gestartet".</span>
+    <div class="tl-item">
+      <div class="tl-time">48–72 h</div>
+      <div class="tl-text">Maximale Autophagie. Stammzell-Regeneration beginnt. Immunsystem wird quasi „neu gestartet".</div>
     </div>
   </div>
-</section>
+</div>
+
+<hr class="divider">
 
 <!-- TIPPS -->
-<section id="tipps">
-  <h2>Praktische Tipps für Einsteiger</h2>
+<div class="container fade-up" id="tipps">
+  <span class="section-label">Praxis</span>
+  <h2>Tipps für Einsteiger</h2>
 
   <div class="cards">
     <div class="card">
-      <h3>🚶 Langsam starten</h3>
+      <div class="card-icon">🚶</div>
+      <h3>Langsam starten</h3>
       <p>Beginne mit 12:12 und steigere dich schrittweise auf 16:8. Dein Körper braucht Zeit zur Anpassung.</p>
     </div>
     <div class="card">
-      <h3>💧 Viel trinken</h3>
+      <div class="card-icon">💧</div>
+      <h3>Viel trinken</h3>
       <p>Wasser, ungesüßter Tee und schwarzer Kaffee sind erlaubt und helfen, das Hungergefühl zu mildern.</p>
     </div>
     <div class="card">
-      <h3>🥗 Nährstoffreich essen</h3>
+      <div class="card-icon">🥗</div>
+      <h3>Nährstoffreich essen</h3>
       <p>In den Essensphasen auf vollwertige, nährstoffreiche Mahlzeiten achten – Qualität vor Quantität.</p>
     </div>
     <div class="card">
-      <h3>📋 Auf den Körper hören</h3>
+      <div class="card-icon">📋</div>
+      <h3>Auf den Körper hören</h3>
       <p>Schwindel, starke Schwäche oder Unwohlsein? Dann brich das Fasten ab. Gesundheit geht vor.</p>
     </div>
   </div>
 
   <div class="hinweis">
-    <strong>⚠️ Wichtiger Hinweis:</strong> Diese Seite dient ausschließlich der Information und
-    ersetzt keine ärztliche Beratung. Personen mit Vorerkrankungen, Schwangere, Stillende und
-    Kinder sollten nicht ohne ärztliche Rücksprache fasten.
+    <div class="hinweis-icon">⚠️</div>
+    <p>
+      <strong>Wichtiger Hinweis:</strong> Diese Seite dient ausschließlich der Information und
+      ersetzt keine ärztliche Beratung. Personen mit Vorerkrankungen, Schwangere, Stillende und
+      Kinder sollten nicht ohne ärztliche Rücksprache fasten.
+    </p>
   </div>
-</section>
+</div>
+
+<hr class="divider">
 
 <!-- VIDEOS -->
-<section id="videos">
+<div class="container fade-up" id="videos">
+  <span class="section-label">Weiterführend</span>
   <h2>Videos zum Thema</h2>
-  <p>Hier findest du ausgewählte Videos rund um Fasten und Autophagie – von Dokumentationen bis zu kurzen Erklärvideos.</p>
+  <p>Ausgewählte Videos rund um Fasten und Autophagie – von Dokumentationen bis zu kurzen Erklärvideos.</p>
 
-  <div class="video-cards">
+  <div class="video-grid">
 
     <a class="video-card" href="https://www.arte.tv/de/videos/118244-000-A/fasten-ein-phaenomen-wird-erforscht/" target="_blank" rel="noopener">
-      <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80" alt="ARTE Dokumentation über Fasten">
-      <div class="video-info">
+      <div class="video-thumb">
+        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80" alt="ARTE Dokumentation über Fasten">
+        <div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      </div>
+      <div class="video-body">
         <h3>Fasten – Ein Phänomen wird erforscht</h3>
-        <p>ARTE-Dokumentation über die wissenschaftliche Erforschung des Fastens und seine erstaunlichen Auswirkungen auf den Körper.</p>
+        <p>ARTE-Dokumentation über die wissenschaftliche Erforschung des Fastens und seine Auswirkungen auf den Körper.</p>
         <span class="badge badge-arte">ARTE</span>
       </div>
     </a>
 
     <a class="video-card" href="https://www.youtube.com/watch?v=jlELeipDRXc" target="_blank" rel="noopener">
-      <img src="https://img.youtube.com/vi/jlELeipDRXc/hqdefault.jpg" alt="YouTube Video über Fasten und Autophagie">
-      <div class="video-info">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/jlELeipDRXc/hqdefault.jpg" alt="YouTube Video über Fasten und Autophagie">
+        <div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      </div>
+      <div class="video-body">
         <h3>Fasten &amp; Autophagie erklärt</h3>
         <p>Ausführliches Video über die Zusammenhänge zwischen Fasten und zellulärer Selbstreinigung.</p>
         <span class="badge badge-youtube">YouTube</span>
@@ -404,8 +573,11 @@
     </a>
 
     <a class="video-card" href="https://www.youtube.com/shorts/f2U6ALFiuwU" target="_blank" rel="noopener">
-      <img src="https://img.youtube.com/vi/f2U6ALFiuwU/hqdefault.jpg" alt="YouTube Short über Autophagie">
-      <div class="video-info">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/f2U6ALFiuwU/hqdefault.jpg" alt="YouTube Short über Autophagie">
+        <div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      </div>
+      <div class="video-body">
         <h3>Autophagie in Kürze</h3>
         <p>Kompaktes Kurzvideo – die wichtigsten Fakten zur Autophagie in unter einer Minute.</p>
         <span class="badge badge-youtube">YouTube Short</span>
@@ -413,11 +585,24 @@
     </a>
 
   </div>
-</section>
+</div>
 
 <footer>
   <p>&copy; 2026 – Informationsseite zu Autophagie &amp; Fasten</p>
 </footer>
+
+<!-- Scroll Animations -->
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
