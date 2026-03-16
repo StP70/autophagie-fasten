@@ -46,9 +46,18 @@
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
       display: flex; justify-content: center; align-items: center; gap: 2.5rem;
-      padding: 1rem 1.5rem;
+      padding: .6rem 1.5rem;
       font-size: .875rem;
       font-weight: 500;
+      position: relative;
+    }
+    .nav-icon {
+      position: absolute;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 36px;
+      width: auto;
     }
     nav a {
       color: var(--text-muted);
@@ -338,6 +347,7 @@
   <a href="#timeline">Zeitstrahl</a>
   <a href="#tipps">Tipps</a>
   <a href="#videos">Videos</a>
+  <img class="nav-icon" src="icon.png" alt="Steph's Universe Icon">
 </nav>
 
 <!-- HERO -->
