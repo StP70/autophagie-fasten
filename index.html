@@ -45,19 +45,23 @@
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
-      display: flex; justify-content: center; align-items: center; gap: 2.5rem;
+      display: flex; align-items: center;
       padding: .6rem 1.5rem;
       font-size: .875rem;
       font-weight: 500;
-      position: relative;
+      gap: 1rem;
     }
     .nav-icon {
-      position: absolute;
-      right: 1.5rem;
-      top: 50%;
-      transform: translateY(-50%);
       height: 36px;
       width: auto;
+      flex-shrink: 0;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: .4rem 2rem;
+      flex: 1;
     }
     nav a {
       color: var(--text-muted);
@@ -330,7 +334,8 @@
 
     /* ---- MOBILE ---- */
     @media (max-width: 640px) {
-      nav { gap: 1rem; font-size: .8rem; flex-wrap: wrap; justify-content: center; }
+      nav { gap: .8rem; font-size: .8rem; }
+      .nav-links { gap: .3rem 1.2rem; }
       .hero { min-height: 70vh; padding: 4rem 1.2rem; }
       .container { padding: 3.5rem 1.2rem; }
       .tl-item { grid-template-columns: 80px 1fr; gap: 1rem; }
@@ -341,13 +346,15 @@
 <body>
 
 <nav>
-  <a href="#autophagie">Autophagie</a>
-  <a href="#fasten">Fasten</a>
-  <a href="#verbindung">Wissenschaft</a>
-  <a href="#timeline">Zeitstrahl</a>
-  <a href="#tipps">Tipps</a>
-  <a href="#videos">Videos</a>
   <img class="nav-icon" src="icon.png" alt="Steph's Universe Icon">
+  <div class="nav-links">
+    <a href="#autophagie">Autophagie</a>
+    <a href="#fasten">Fasten</a>
+    <a href="#verbindung">Wissenschaft</a>
+    <a href="#timeline">Zeitstrahl</a>
+    <a href="#tipps">Tipps</a>
+    <a href="#videos">Videos</a>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -613,7 +620,7 @@
   document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
 
   // Active nav link on scroll + click
-  const navLinks = document.querySelectorAll('nav a');
+  const navLinks = document.querySelectorAll('.nav-links a');
   const sectionIds = [];
   navLinks.forEach(link => {
     const id = link.getAttribute('href').replace('#', '');
