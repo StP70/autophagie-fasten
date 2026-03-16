@@ -168,15 +168,21 @@
       transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
     }
     .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: rgba(16,185,129,.2); }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: .75rem;
+    }
     .card-icon {
-      width: 44px; height: 44px;
+      width: 40px; height: 40px;
       display: flex; align-items: center; justify-content: center;
       background: var(--emerald-50);
-      border-radius: 12px;
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      flex-shrink: 0;
     }
-    .card h3 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: .4rem; }
+    .card h3 { font-size: 1rem; font-weight: 600; color: var(--text); margin: 0; }
     .card p { font-size: .9rem; color: var(--text-muted); line-height: 1.6; text-align: justify; }
 
     /* ---- QUOTE ---- */
@@ -371,18 +377,15 @@
 
   <div class="cards">
     <div class="card">
-      <div class="card-icon">🔬</div>
-      <h3>Zellerneuerung</h3>
+      <div class="card-header"><div class="card-icon">🔬</div><h3>Zellerneuerung</h3></div>
       <p>Beschädigte Zellbestandteile werden abgebaut und durch neue ersetzt – die Zelle verjüngt sich von innen.</p>
     </div>
     <div class="card">
-      <div class="card-icon">🛡️</div>
-      <h3>Immunabwehr</h3>
+      <div class="card-header"><div class="card-icon">🛡️</div><h3>Immunabwehr</h3></div>
       <p>Autophagie hilft, intrazelluläre Krankheitserreger wie Bakterien und Viren zu beseitigen.</p>
     </div>
     <div class="card">
-      <div class="card-icon">⚡</div>
-      <h3>Energiegewinnung</h3>
+      <div class="card-header"><div class="card-icon">⚡</div><h3>Energiegewinnung</h3></div>
       <p>In Zeiten von Nährstoffmangel liefert der Abbau zelleigener Bestandteile wertvolle Energie.</p>
     </div>
   </div>
@@ -402,23 +405,19 @@
 
   <div class="cards">
     <div class="card">
-      <div class="card-icon">⏰</div>
-      <h3>16:8 Intervallfasten</h3>
+      <div class="card-header"><div class="card-icon">⏰</div><h3>16:8 Intervallfasten</h3></div>
       <p>16 Stunden fasten, 8 Stunden essen. Die beliebteste Methode für den Alltag – z.B. von 12–20 Uhr essen.</p>
     </div>
     <div class="card">
-      <div class="card-icon">📅</div>
-      <h3>5:2 Methode</h3>
+      <div class="card-header"><div class="card-icon">📅</div><h3>5:2 Methode</h3></div>
       <p>An 5 Tagen normal essen, an 2 Tagen nur ca. 500–600 kcal. Flexibel in der Wochenplanung.</p>
     </div>
     <div class="card">
-      <div class="card-icon">🍽️</div>
-      <h3>OMAD</h3>
+      <div class="card-header"><div class="card-icon">🍽️</div><h3>OMAD</h3></div>
       <p>One Meal a Day – nur eine Mahlzeit am Tag, ein intensiverer Ansatz mit ca. 23h Fastenzeit.</p>
     </div>
     <div class="card">
-      <div class="card-icon">🧘</div>
-      <h3>Mehrtägiges Fasten</h3>
+      <div class="card-header"><div class="card-icon">🧘</div><h3>Mehrtägiges Fasten</h3></div>
       <p>24–72+ Stunden ohne Nahrung. Stärkster Autophagie-Stimulus, nur mit Vorbereitung und ärztlicher Begleitung.</p>
     </div>
   </div>
@@ -446,18 +445,15 @@
 
   <div class="cards">
     <div class="card">
-      <div class="card-icon">📉</div>
-      <h3>Insulin sinkt</h3>
+      <div class="card-header"><div class="card-icon">📉</div><h3>Insulin sinkt</h3></div>
       <p>Niedrige Insulinwerte signalisieren den Zellen: „Es gibt gerade keine neue Energie von außen."</p>
     </div>
     <div class="card">
-      <div class="card-icon">🔄</div>
-      <h3>mTOR wird gehemmt</h3>
+      <div class="card-header"><div class="card-icon">🔄</div><h3>mTOR wird gehemmt</h3></div>
       <p>Der Wachstumssensor mTOR fährt herunter – das gibt den Startschuss für die zelluläre Selbstreinigung.</p>
     </div>
     <div class="card">
-      <div class="card-icon">⚙️</div>
-      <h3>AMPK wird aktiviert</h3>
+      <div class="card-header"><div class="card-icon">⚙️</div><h3>AMPK wird aktiviert</h3></div>
       <p>Der „Energiesensor" AMPK erkennt den Mangel und kurbelt Reparatur- und Recyclingprozesse an.</p>
     </div>
   </div>
@@ -513,23 +509,19 @@
 
   <div class="cards">
     <div class="card">
-      <div class="card-icon">🚶</div>
-      <h3>Langsam starten</h3>
+      <div class="card-header"><div class="card-icon">🚶</div><h3>Langsam starten</h3></div>
       <p>Beginne mit 12:12 und steigere dich schrittweise auf 16:8. Dein Körper braucht Zeit zur Anpassung.</p>
     </div>
     <div class="card">
-      <div class="card-icon">💧</div>
-      <h3>Viel trinken</h3>
+      <div class="card-header"><div class="card-icon">💧</div><h3>Viel trinken</h3></div>
       <p>Wasser, ungesüßter Tee und schwarzer Kaffee sind erlaubt und helfen, das Hungergefühl zu mildern.</p>
     </div>
     <div class="card">
-      <div class="card-icon">🥗</div>
-      <h3>Nährstoffreich essen</h3>
+      <div class="card-header"><div class="card-icon">🥗</div><h3>Nährstoffreich essen</h3></div>
       <p>In den Essensphasen auf vollwertige, nährstoffreiche Mahlzeiten achten – Qualität vor Quantität.</p>
     </div>
     <div class="card">
-      <div class="card-icon">📋</div>
-      <h3>Auf den Körper hören</h3>
+      <div class="card-header"><div class="card-icon">📋</div><h3>Auf den Körper hören</h3></div>
       <p>Schwindel, starke Schwäche oder Unwohlsein? Dann brich das Fasten ab. Gesundheit geht vor.</p>
     </div>
   </div>
