@@ -9,18 +9,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --green: #059669;
-      --green-dark: #064e3b;
-      --green-light: #34d399;
-      --emerald-50: #ecfdf5;
-      --bg: #fafafa;
-      --text: #111827;
-      --text-muted: #6b7280;
-      --card-bg: #ffffff;
+      --green: #10b981;
+      --green-dark: #059669;
+      --green-light: #6ee7b7;
+      --emerald-50: rgba(16,185,129,.08);
+      --bg: #0a0a0a;
+      --bg-elevated: #141414;
+      --bg-card: #1a1a1a;
+      --text: #f5f5f5;
+      --text-muted: #a3a3a3;
+      --card-bg: #1a1a1a;
+      --border: rgba(255,255,255,.06);
       --radius: 16px;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,.06);
-      --shadow-md: 0 4px 20px rgba(0,0,0,.08);
-      --shadow-lg: 0 12px 40px rgba(0,0,0,.12);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.3);
+      --shadow-md: 0 4px 20px rgba(0,0,0,.4);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,.5);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -38,10 +41,10 @@
     /* ---- NAV ---- */
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(255,255,255,.8);
+      background: rgba(10,10,10,.85);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(0,0,0,.06);
+      border-bottom: 1px solid var(--border);
       display: flex; justify-content: center; align-items: center; gap: 2.5rem;
       padding: 1rem 1.5rem;
       font-size: .875rem;
@@ -66,26 +69,26 @@
       text-align: center;
       padding: 6rem 1.5rem;
       overflow: hidden;
-      background: linear-gradient(160deg, #064e3b 0%, #059669 40%, #34d399 100%);
+      background: linear-gradient(160deg, #000 0%, #0a0a0a 40%, #111 100%);
     }
     .hero::before {
       content: "";
       position: absolute; inset: 0;
       background: url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1400&q=80') center/cover;
-      opacity: .15;
-      mix-blend-mode: overlay;
+      opacity: .1;
+      mix-blend-mode: luminosity;
     }
     .hero-content { position: relative; z-index: 2; max-width: 720px; }
     .hero-badge {
       display: inline-block;
-      background: rgba(255,255,255,.15);
+      background: rgba(16,185,129,.12);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,.2);
+      border: 1px solid rgba(16,185,129,.3);
       padding: .4rem 1.2rem;
       border-radius: 100px;
       font-size: .8rem;
       font-weight: 500;
-      color: #d1fae5;
+      color: var(--green);
       margin-bottom: 1.5rem;
       letter-spacing: .03em;
     }
@@ -107,16 +110,16 @@
       display: inline-flex; align-items: center; gap: .5rem;
       margin-top: 2rem;
       padding: .85rem 2rem;
-      background: #fff;
-      color: var(--green-dark);
+      background: var(--green);
+      color: #000;
       font-weight: 600;
       font-size: .95rem;
       border-radius: 100px;
       text-decoration: none;
-      transition: transform .2s, box-shadow .2s;
-      box-shadow: var(--shadow-md);
+      transition: transform .2s, box-shadow .2s, background .2s;
+      box-shadow: 0 0 30px rgba(16,185,129,.25);
     }
-    .hero-cta:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(16,185,129,.4); background: var(--green-light); }
     .hero-cta svg { width: 18px; height: 18px; }
 
     /* ---- SECTIONS ---- */
@@ -161,10 +164,10 @@
       border-radius: var(--radius);
       padding: 1.8rem;
       box-shadow: var(--shadow-sm);
-      border: 1px solid rgba(0,0,0,.04);
-      transition: transform .25s ease, box-shadow .25s ease;
+      border: 1px solid var(--border);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
     }
-    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: rgba(16,185,129,.2); }
     .card-icon {
       width: 44px; height: 44px;
       display: flex; align-items: center; justify-content: center;
@@ -179,7 +182,8 @@
     /* ---- QUOTE ---- */
     .quote-block {
       position: relative;
-      background: var(--emerald-50);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 2.5rem 2.5rem 2.5rem 3rem;
       margin: 2.5rem 0;
@@ -193,7 +197,7 @@
       font-family: Georgia, serif;
       line-height: 1;
     }
-    .quote-block p { font-size: 1.05rem; color: var(--text); font-style: italic; }
+    .quote-block p { font-size: 1.05rem; color: var(--text-muted); font-style: italic; }
     .quote-block cite { display: block; margin-top: .8rem; font-size: .85rem; color: var(--text-muted); font-style: normal; font-weight: 500; }
 
     /* ---- TIMELINE ---- */
@@ -203,7 +207,7 @@
       grid-template-columns: 100px 1fr;
       gap: 1.5rem;
       padding: 1.5rem 0;
-      border-bottom: 1px solid rgba(0,0,0,.06);
+      border-bottom: 1px solid var(--border);
       align-items: start;
     }
     .tl-item:last-child { border-bottom: none; }
@@ -218,15 +222,16 @@
 
     /* ---- HINWEIS ---- */
     .hinweis {
-      background: #fffbeb;
-      border: 1px solid #fbbf24;
+      background: rgba(251,191,36,.06);
+      border: 1px solid rgba(251,191,36,.2);
       border-radius: var(--radius);
       padding: 1.5rem 1.8rem;
       margin-top: 2.5rem;
       display: flex; gap: 1rem; align-items: flex-start;
     }
     .hinweis-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: .1rem; }
-    .hinweis p { font-size: .9rem; color: #92400e; }
+    .hinweis p { font-size: .9rem; color: #fbbf24; }
+    .hinweis p strong { color: #fbbf24; }
 
     /* ---- VIDEOS ---- */
     .video-grid {
@@ -240,11 +245,11 @@
       border-radius: var(--radius);
       overflow: hidden;
       box-shadow: var(--shadow-sm);
-      border: 1px solid rgba(0,0,0,.04);
-      transition: transform .25s ease, box-shadow .25s ease;
+      border: 1px solid var(--border);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
       text-decoration: none; color: inherit; display: block;
     }
-    .video-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .video-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: rgba(16,185,129,.2); }
     .video-thumb {
       position: relative;
       width: 100%;
@@ -261,7 +266,7 @@
       transition: opacity .3s;
     }
     .video-card:hover .video-play { opacity: 1; }
-    .video-play svg { width: 48px; height: 48px; fill: #fff; filter: drop-shadow(0 2px 8px rgba(0,0,0,.3)); }
+    .video-play svg { width: 48px; height: 48px; fill: var(--green); filter: drop-shadow(0 0 12px rgba(16,185,129,.4)); }
     .video-body { padding: 1.3rem 1.5rem; }
     .video-body h3 { font-size: 1rem; font-weight: 600; margin-bottom: .3rem; }
     .video-body p { font-size: .85rem; color: var(--text-muted); margin: 0; line-height: 1.5; }
@@ -281,7 +286,7 @@
     .divider {
       border: none;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(0,0,0,.08), transparent);
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
       max-width: 960px;
       margin: 0 auto;
     }
@@ -352,7 +357,7 @@
     natürlichen Prozess, bei dem Zellen beschädigte oder nicht mehr benötigte Bestandteile
     abbauen und recyceln.
   </p>
-  <p style="margin-top: 1rem; color: var(--text-muted); max-width: 640px;">
+  <p style="margin-top: 1rem; max-width: 640px;">
     Dieser Mechanismus dient als eine Art <strong>zelluläres Aufräumprogramm</strong>: Defekte
     Proteine, geschädigte Mitochondrien und andere Zellabfälle werden in Membranbläschen
     (Autophagosomen) eingeschlossen und von Lysosomen abgebaut. Die gewonnenen
@@ -432,7 +437,7 @@
     Gleichzeitig wird der Wachstumsfaktor <strong>mTOR</strong> gehemmt – ein zentraler
     Signalweg, der bei Nahrungsüberfluss die Autophagie unterdrückt.
   </p>
-  <p style="margin-top: 1rem; color: var(--text-muted); max-width: 640px;">
+  <p style="margin-top: 1rem; max-width: 640px;">
     Das Ergebnis: Die Zellen schalten in den „Aufräummodus". Je länger die Fastenperiode,
     desto intensiver läuft die Autophagie ab. Erste Effekte zeigen sich bereits nach
     <strong>12–16 Stunden</strong>, ein deutlicher Anstieg wird nach <strong>24–48 Stunden</strong>
