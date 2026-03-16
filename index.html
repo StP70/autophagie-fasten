@@ -60,17 +60,22 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: .4rem 2rem;
+      gap: .4rem;
       flex: 1;
     }
-    nav a {
+    .nav-links a {
       color: var(--text-muted);
       text-decoration: none;
-      transition: color .2s;
+      transition: all .2s;
       letter-spacing: -.01em;
+      padding: .35rem .85rem;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      font-size: .8rem;
     }
-    nav a:hover { color: var(--green); }
-    nav a.active { color: var(--green); }
+    .nav-links a:hover { color: #fff; border-color: var(--green); background: rgba(16,185,129,.1); }
+    .nav-links a.active { color: #fff; border-color: var(--green); background: rgba(16,185,129,.15); }
 
     /* ---- HERO ---- */
     .hero {
@@ -334,8 +339,9 @@
 
     /* ---- MOBILE ---- */
     @media (max-width: 640px) {
-      nav { gap: .8rem; font-size: .8rem; }
-      .nav-links { gap: .3rem 1.2rem; }
+      nav { gap: .6rem; }
+      .nav-links { gap: .3rem; }
+      .nav-links a { font-size: .72rem; padding: .28rem .65rem; }
       .hero { min-height: 70vh; padding: 4rem 1.2rem; }
       .container { padding: 3.5rem 1.2rem; }
       .tl-item { grid-template-columns: 80px 1fr; gap: 1rem; }
